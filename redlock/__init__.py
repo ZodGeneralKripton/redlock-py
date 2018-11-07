@@ -59,7 +59,7 @@ class Redlock(object):
                     server = connection_info
                 self.servers.append(server)
             except Exception as e:
-                raise Warning(str(e))
+                logging.exception("Error connection to server %s", str(e))
         self.quorum = (len(connection_list) // 2) + 1
 
         if len(self.servers) < self.quorum:
@@ -109,7 +109,7 @@ class Redlock(object):
             validity = int(ttl - elapsed_time - drift)
             if validity > 0 and n >= self.quorum:
                 if redis_errors:
-                    raise MultipleRedlockException(redis_errors)
+                    logging.exception("Error uin redis instance: %s ", str(redis_errors))
                 return Lock(validity, resource, val)
             else:
                 for server in self.servers:
@@ -129,4 +129,4 @@ class Redlock(object):
             except RedisError as e:
                 redis_errors.append(e)
         if redis_errors:
-            raise MultipleRedlockException(redis_errors)
+            logging.exception("Error uin redis instance: %s ", str(redis_errors))
