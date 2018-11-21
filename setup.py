@@ -66,7 +66,7 @@ THE SOFTWARE.
 """
 
 setup(
-    name='redlock-py',
+    name='redlock-py-catch',
     version='0.0.1',
     packages=find_packages(),
     include_package_data=True,
