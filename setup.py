@@ -66,13 +66,13 @@ THE SOFTWARE.
 """
 
 setup(
-    name='redlock-py-catch',
-    version='0.0.1',
+    name='redlock-py',
+    version='1.0.8',
     packages=find_packages(),
     include_package_data=True,
     description='Redis locking mechanism',
     long_description=README,
-    url='https://github.com/ZodGeneralKripton/redlock-py',
+    url='https://github.com/SPSCommerce/identity-service',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
