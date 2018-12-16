@@ -103,7 +103,7 @@ class Redlock(object):
                 try:
                     if self.lock_instance(server, resource, val, ttl):
                         n += 1
-                except RedisError as e:
+                except Exception as e:
                     redis_errors.append(e)
             elapsed_time = int(time.time() * 1000) - start_time
             validity = int(ttl - elapsed_time - drift)
@@ -126,7 +126,7 @@ class Redlock(object):
         for server in self.servers:
             try:
                 self.unlock_instance(server, lock.resource, lock.key)
-            except RedisError as e:
+            except Exception as e:
                 redis_errors.append(e)
         if redis_errors:
             logging.exception("Error uin redis instance: %s ", str(redis_errors))
